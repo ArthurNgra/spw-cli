@@ -3,8 +3,10 @@
 ## installation
 
 ''' 
+
 cd repo 
 chmod +x install.sh
+
 '''
 
 ## utilisation
