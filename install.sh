@@ -1,28 +1,22 @@
 #!/bin/bash
 
-# Récupérer le répertoire du script d'installation
-script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Chemin vers le répertoire où se trouve le script run.sh
+script_dir="$(dirname "$0")"
 
-# Chemin complet vers le script run.sh
-run_script_path="$script_dir/run.sh"
+# Vérifier si l'utilisateur utilise Zsh ou Bash
+# Vérifier si le fichier de configuration zshrc existe dans le répertoire utilisateur
+if [[ -f "$HOME/.zshrc" ]]; then
+    shell_rc="zshrc"
+else
+    shell_rc="bashrc"
+fi
 
-# Nom de l'alias à créer
-alias_name="spw"
+# Ajouter l'alias au fichier de configuration du shell
+echo "alias spw=\"$script_dir/run.sh\"" >> "$HOME/.$shell_rc"
 
-# Chemin du fichier de configuration du shell
-bash_rc_file="$HOME/.bashrc"
-zsh_rc_file="$HOME/.zshrc"
+echo "L'alias 'spw' a été ajouté à votre fichier $shell_rc."
 
-# Ajouter l'alias à la configuration du shell bash
-echo "alias $alias_name='$run_script_path'" >> "$bash_rc_file"
+# Charger les modifications du fichier de configuration du shell
+source "$HOME/.$shell_rc"
 
-# Ajouter l'alias à la configuration du shell zsh
-echo "alias $alias_name='run_script_path'" >> "$zsh_rc_file"
-
-# Charger la nouvelle configuration du shell (bash)
-source "$bash_rc_file"
-
-# Charger la nouvelle configuration du shell (zsh)
-source "$zsh_rc_file"
-
-echo "Script spw installé avec succès et alias configuré."
+echo "Installation terminée."
