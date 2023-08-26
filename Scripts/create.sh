@@ -50,9 +50,16 @@ function create_project {
     eval "$curl_command"
     
     unzip "$project_name.zip" -d "$project_name"
+
     rm "$project_name.zip"
     
-    # Effectuer d'autres actions de configuration si nécessaires
+# Ajout des dossiers supplémentaires
+    mkdir -p "$project_name/src/main/java/$group_id/$artifact_id/repository"
+    mkdir -p "$project_name/src/main/java/$group_id/$artifact_id/service"
+    mkdir -p "$project_name/src/main/java/$group_id/$artifact_id/auth"
+    mkdir -p "$project_name/src/main/java/$group_id/$artifact_id/entity"
+    mkdir -p "$project_name/src/main/java/$group_id/$artifact_id/controller"
+
 }
 
 function start_questions {
