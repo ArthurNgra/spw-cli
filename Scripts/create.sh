@@ -62,11 +62,17 @@ function create_project {
 
  # Création et écriture du fichier de configuration
     config_file="$project_name/.spwConfig"
+    echo "project_name: $project_name" >> "$config_file"
+    echo "group_id : $group_id" >> "$config_file"
+    echo "artifact_id : $artifact_id" >> "$config_file"
     echo "repository_path=$project_name/src/main/java/$group_id/$artifact_id/Repository" > "$config_file"
     echo "service_path=$project_name/src/main/java/$group_id/$artifact_id/Service" >> "$config_file"
     echo "security_path=$project_name/src/main/java/$group_id/$artifact_id/Security" > "$config_file"
     echo "entity_path=$project_name/src/main/java/$group_id/$artifact_id/Entity" >> "$config_file"
     echo "controller_path=$project_name/src/main/java/$group_id/$artifact_id/Controller" >> "$config_file"
+    echo "project_name: $project_name" >> "$config_file"
+    echo "group_id : $group_id" >> "$config_file"
+    echo "artifact_id : $artifact_id" >> "$config_file"
 }
 
 function start_questions {
