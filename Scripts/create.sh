@@ -54,12 +54,19 @@ function create_project {
     rm "$project_name.zip"
     
 # Ajout des dossiers supplémentaires
-    mkdir -p "$project_name/src/main/java/$group_id/$artifact_id/repository"
-    mkdir -p "$project_name/src/main/java/$group_id/$artifact_id/service"
-    mkdir -p "$project_name/src/main/java/$group_id/$artifact_id/auth"
-    mkdir -p "$project_name/src/main/java/$group_id/$artifact_id/entity"
-    mkdir -p "$project_name/src/main/java/$group_id/$artifact_id/controller"
+    mkdir -p "$project_name/src/main/java/$group_id/$artifact_id/Repository"
+    mkdir -p "$project_name/src/main/java/$group_id/$artifact_id/Service"
+    mkdir -p "$project_name/src/main/java/$group_id/$artifact_id/Security"
+    mkdir -p "$project_name/src/main/java/$group_id/$artifact_id/Entity"
+    mkdir -p "$project_name/src/main/java/$group_id/$artifact_id/Controller"
 
+ # Création et écriture du fichier de configuration
+    config_file="$project_name/.spwConfig"
+    echo "repository_path=$project_name/src/main/java/$group_id/$artifact_id/Repository" > "$config_file"
+    echo "service_path=$project_name/src/main/java/$group_id/$artifact_id/Service" >> "$config_file"
+    echo "security_path=$project_name/src/main/java/$group_id/$artifact_id/Security" > "$config_file"
+    echo "entity_path=$project_name/src/main/java/$group_id/$artifact_id/Entity" >> "$config_file"
+    echo "controller_path=$project_name/src/main/java/$group_id/$artifact_id/Controller" >> "$config_file"
 }
 
 function start_questions {
